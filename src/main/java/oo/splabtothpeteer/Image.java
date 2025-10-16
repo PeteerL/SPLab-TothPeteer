@@ -1,13 +1,19 @@
 package oo.splabtothpeteer;
 
-public class Image {
-    private String imageName;
+public class Image implements Element {
+    protected String url;
 
-    public Image(String imageName) {
-        this.imageName = imageName;
+    public Image(String url) {
+        this.url = url;
     }
 
+    public void content() {
+        System.out.println("Displaying image content: " + url);
+    }
+
+    @Override
     public void print() {
-        System.out.println("      Image: " + imageName);
+        System.out.println("Image: " + url);
     }
 }
+

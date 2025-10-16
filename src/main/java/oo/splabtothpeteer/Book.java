@@ -2,34 +2,26 @@ package oo.splabtothpeteer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
-    private String title;
+public class Book extends Section {
     private List<Author> authors = new ArrayList<>();
-    private TableOfContents tableOfContents;
-    private List<Chapter> chapters = new ArrayList<>();
+    private TableOfContents toc = new TableOfContents();
 
     public Book(String title) {
-        this.title = title;
-        this.tableOfContents = new TableOfContents();
+        super(title);
     }
 
     public void addAuthor(Author author) {
         authors.add(author);
     }
 
-    public void addChapter(Chapter chapter) {
-        chapters.add(chapter);
-    }
-
     public void print() {
-        System.out.println("Book: " + title);
+        System.out.println("Book: " + super.getTitle());
         System.out.println("Authors:");
         for (Author a : authors) {
             a.print();
         }
-        tableOfContents.print();
-        for (Chapter c : chapters) {
-            c.print();
-        }
+        toc.print();
+        super.print();
     }
 }
+
