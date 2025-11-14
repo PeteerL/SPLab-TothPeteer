@@ -1,10 +1,10 @@
 package oo.splabtothpeteer.command;
 
-import oo.splabtothpeteer.model.Book; // Asigură-te că este modelul JPA
+import oo.splabtothpeteer.model.Book;
 import oo.splabtothpeteer.service.BookService;
-import lombok.RequiredArgsConstructor; // E bine să folosești asta dacă ai Lombok
+import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor // Folosește constructor injection
+@RequiredArgsConstructor // Constructor injection
 public class CreateBookCommand implements Command {
 
     private final BookService bookService;
@@ -12,11 +12,7 @@ public class CreateBookCommand implements Command {
 
     @Override
     public void execute() {
-        // AICI ESTE MODIFICAREA:
-        // Am schimbat "addBook" în "createBook"
         bookService.createBook(book);
-
-        // Poți lăsa și logarea, dacă vrei
         System.out.println("Book created (via command): " + book.getTitle());
     }
 }
