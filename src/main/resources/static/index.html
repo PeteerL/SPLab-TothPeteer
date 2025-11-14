@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1>All Books</h1>
+<button id="fetchButton" onclick="sendRequest()">Fetch Books</button>
+<div id="sseDiv"></div>
+
+<script>
+    function sendRequest() {
+        // Verificarea corecta este '!=' (diferit)
+        if (typeof(EventSource) !== "undefined") {
+
+            // Am folosit un URL relativ si portul tau 8081
+            // Sa presupunem ca EventSource se conecteaza la calea /books-sse
+            const source = new EventSource("/books-sse");
+
+            // Cand se primeste un mesaj de la server
+            source.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                // Afisam titlul cartii
+                document.getElementById("sseDiv").innerHTML += "Noua carte adaugata: " + data.title + "<br>";
+            };
+
+            source.onerror = function(err) {
+                console.error("EventSource failed:", err);
+                document.getElementById("sseDiv").innerHTML = "Eroare de conexiune SSE.";
+            };
+
+        } else {
+            document.getElementById("sseDiv").innerHTML = "Browserul tau nu suportă server-sent events.";
+        }
+    }
+</script>
+</body>
+</html>

@@ -11,7 +11,6 @@ public class DeleteBookCommand implements Command {
 
     @Override
     public void execute() {
-        // Metoda .deleteBook() este probabil la fel
         bookService.deleteBook(id);
 
         System.out.println("Book deleted (via command), id: " + id);

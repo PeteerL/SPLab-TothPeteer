@@ -13,7 +13,6 @@ public class UpdateBookCommand implements Command {
 
     @Override
     public void execute() {
-        // Metoda .updateBook() din noul service returnează cartea actualizată
         Book updatedBook = bookService.updateBook(id, book);
 
         System.out.println("Book updated (via command): " + updatedBook.getTitle());
